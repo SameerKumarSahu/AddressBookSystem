@@ -1,8 +1,10 @@
 package com.AddressBook;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -124,19 +126,36 @@ public class AddressBook {
 		contact.stream().filter(c -> c.getCity().equals(city)).forEach(
 				cn -> System.out.println("First Name : " + cn.getFirstName() + "  Last Name : " + cn.getFirstName()));
 	}
+
 	public static void countByCity(List<Contact> contact) {
 
-        System.out.println("Enter the name of the city:");
-        String city=sc.next();
-        Long countNamesByCity= contact.stream().filter(e -> city.equals(e.getCity())).count();
-        System.out.println(city+" : "+countNamesByCity);
+		System.out.println("Enter the name of the city:");
+		String city = sc.next();
+		Long countNamesByCity = contact.stream().filter(e -> city.equals(e.getCity())).count();
+		System.out.println(city + " : " + countNamesByCity);
 
-    }
+	}
+
 	public static void countByState(List<Contact> contact) {
 
-        System.out.println("Enter the name of the State:");
-        String state=sc.next();
-        Long countNamesByState=contact.stream().filter(e -> state.equals(e.getState())).count();
-        System.out.println(state+" : "+countNamesByState);
-    }
+		System.out.println("Enter the name of the State:");
+		String state = sc.next();
+		Long countNamesByState = contact.stream().filter(e -> state.equals(e.getState())).count();
+		System.out.println(state + " : " + countNamesByState);
+	}
+
+	public static void sortedContactByFirstName(List<Contact> contact) {
+
+		List<Contact> sortedContact = contact.stream().sorted(new compareFirstName()).collect(Collectors.toList());
+		System.out.println(sortedContact);
+	}
+
+}
+
+class compareFirstName implements Comparator<Contact> {
+	@Override
+	public int compare(Contact o1, Contact o2) {
+
+		return o1.getFirstName().compareTo(o2.getFirstName());
+	}
 }
