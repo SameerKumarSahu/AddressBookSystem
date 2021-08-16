@@ -1,7 +1,10 @@
 package com.AddressBook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+
 
 public class AddressBook {
 
@@ -102,4 +105,12 @@ public class AddressBook {
 						+ c.getZip() + " \n" + c.getEmail());
 			}
 	}
+	public static boolean checkDuplicate(String f_name,List<Contact> contact) {
+        for (Contact c : contact) {
+            if (c.getFirstName().equals(f_name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
