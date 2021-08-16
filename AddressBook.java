@@ -1,6 +1,7 @@
 package com.AddressBook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -45,11 +46,7 @@ public class AddressBook {
 
 		contactList.add(contact);
 
-		for (Contact c : contactList) {
-			System.out.println("Contact Details are :-\n" + c.getFirstName() + "\n" + c.getLastName() + "\n "
-					+ c.getAddress() + "\n " + c.getCity() + " \n" + c.getState() + " \n" + c.getPhoneNumber() + " \n"
-					+ c.getZip() + " \n" + c.getEmail());
-		}
+		
 	}
 
 	public static void editContact() {
@@ -95,4 +92,15 @@ public class AddressBook {
 		}
 	}
 
+	public static void displayAll() {
+		boolean is_Empty = contactList.isEmpty();
+		if (is_Empty == true)
+			System.out.println("Array List is Empty");
+		else
+			for (Contact c : contactList) {
+				System.out.println("Contact Details are :-\n" + c.getFirstName() + "\n" + c.getLastName() + "\n"
+						+ c.getAddress() + "\n" + c.getCity() + " \n" + c.getState() + " \n" + c.getPhoneNumber() + " \n"
+						+ c.getZip() + " \n" + c.getEmail());
+			}
+	}
 }
