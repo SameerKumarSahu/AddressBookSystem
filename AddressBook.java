@@ -124,4 +124,19 @@ public class AddressBook {
 		contact.stream().filter(c -> c.getCity().equals(city)).forEach(
 				cn -> System.out.println("First Name : " + cn.getFirstName() + "  Last Name : " + cn.getFirstName()));
 	}
+	public static void countByCity(List<Contact> contact) {
+
+        System.out.println("Enter the name of the city:");
+        String city=sc.next();
+        Long countNamesByCity= contact.stream().filter(e -> city.equals(e.getCity())).count();
+        System.out.println(city+" : "+countNamesByCity);
+
+    }
+	public static void countByState(List<Contact> contact) {
+
+        System.out.println("Enter the name of the State:");
+        String state=sc.next();
+        Long countNamesByState=contact.stream().filter(e -> state.equals(e.getState())).count();
+        System.out.println(state+" : "+countNamesByState);
+    }
 }
