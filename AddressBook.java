@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class AddressBook {
 
 	static Scanner sc = new Scanner(System.in);
@@ -48,7 +46,6 @@ public class AddressBook {
 
 		contactList.add(contact);
 
-		
 	}
 
 	public static void editContact() {
@@ -101,16 +98,30 @@ public class AddressBook {
 		else
 			for (Contact c : contactList) {
 				System.out.println("Contact Details are :-\n" + c.getFirstName() + "\n" + c.getLastName() + "\n"
-						+ c.getAddress() + "\n" + c.getCity() + " \n" + c.getState() + " \n" + c.getPhoneNumber() + " \n"
-						+ c.getZip() + " \n" + c.getEmail());
+						+ c.getAddress() + "\n" + c.getCity() + " \n" + c.getState() + " \n" + c.getPhoneNumber()
+						+ " \n" + c.getZip() + " \n" + c.getEmail());
 			}
 	}
-	public static boolean checkDuplicate(String f_name,List<Contact> contact) {
-        for (Contact c : contact) {
-            if (c.getFirstName().equals(f_name)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
+	public static boolean checkDuplicate(String f_name, List<Contact> contact) {
+		for (Contact c : contact) {
+			if (c.getFirstName().equals(f_name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static void searchByCityOrState(List<Contact> contact) {
+		System.out.println("Enter CityName: ");
+		String city = sc.next();
+		contact.stream().filter(c -> c.getCity().equals(city)).forEach(System.out::println);
+	}
+
+	public static void viewPersonByCityOrState(List<Contact> contact) {
+		System.out.println("Enter CityName: ");
+		String city = sc.next();
+		contact.stream().filter(c -> c.getCity().equals(city)).forEach(
+				cn -> System.out.println("First Name : " + cn.getFirstName() + "  Last Name : " + cn.getFirstName()));
+	}
 }
