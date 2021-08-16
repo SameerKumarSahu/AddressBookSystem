@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class AddressBookMain {
 
 	static String fname;
@@ -39,6 +40,7 @@ public class AddressBookMain {
 				System.out.println("3.Edit Contact ");
 				System.out.println("4.Delete Contact ");
 				System.out.println("5.Search Contact by City");
+				System.out.println("6.View Contact's First Name and Last Name by City ");
 
 				choice = s.nextInt();
 				switch (choice) {
@@ -65,6 +67,9 @@ public class AddressBookMain {
 					break;
 				case 5:
 					AddressBook.searchByCityOrState(contact);
+                    break;
+				case 6:
+					AddressBook.viewPersonByCityOrState(contact);
                     break;
 				default:
 					System.out.println("Enter valid option");
