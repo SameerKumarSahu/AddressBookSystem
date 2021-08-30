@@ -9,28 +9,22 @@ public class AddressBook {
 
 	public static void main(String[] args) {
 		try {
-			//Class.forName("com.mysql.jdbc.Driver");
+			// Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbookservice", "root",
 					"Sameer@42");
 			Statement stm = con.createStatement();
-			String sql = "UPDATE addressbook SET Zip = 760035 where FirstName = 'Sanjaya'";
-			stm.executeUpdate(sql);
-			String QUERY = "SELECT * FROM addressbook";
-			ResultSet rs = stm.executeQuery(QUERY);
-
-			// Display values
-			while (rs.next()) {
-				System.out.print("FirstName: " + rs.getString("FirstName"));
-				System.out.print("| LastName: " + rs.getString("LastName"));
-				System.out.print("| Address: " + rs.getString("Address"));
-				System.out.print("| City: " + rs.getString("City"));
-				System.out.print("| State: " + rs.getString("State"));
-				System.out.print("| Zip: " + rs.getInt("Zip"));
-				System.out.print("| PhoneNumber: " + rs.getString("PhoneNumber"));
-				System.out.print("| Email_ID: " + rs.getString("Email_ID"));
-				System.out.println("\n-----------------------------------------------------------");
-				
-			}
+			// It will count the number of contact from a particular city or state
+			String QUERY1 = "select count(City or State) from AddressBook where state = 'Odisha' and city = 'Cuttack'";
+			ResultSet rs1 = stm.executeQuery(QUERY1);
+			rs1.next();
+			int count1 = rs1.getInt(1);
+			System.out.println("Number of Contact from selected city or state is " + count1);
+			// It will count the number of contacts in the address book
+			String QUERY2 = "select count(*) from AddressBook";
+			ResultSet rs2 = stm.executeQuery(QUERY2);
+			rs2.next();
+			int count2 = rs2.getInt(1);
+			System.out.println("Number of Contact in the addressbook is " + count2);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
