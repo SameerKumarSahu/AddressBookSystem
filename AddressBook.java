@@ -9,28 +9,14 @@ public class AddressBook {
 
 	public static void main(String[] args) {
 		try {
-			//Class.forName("com.mysql.jdbc.Driver");
+			// Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbookservice", "root",
 					"Sameer@42");
 			Statement stm = con.createStatement();
-			String sql = "UPDATE addressbook SET Zip = 760035 where FirstName = 'Sanjaya'";
+			//FirstName.LastName,Address,City,State,Zip,PhoneNumber,EmailID
+			String sql = "INSERT INTO addressbook VALUES ('Rishi', 'Kumar','HousingBoard', 'Hyderabad','Telengana',400856,'9658741365','rishi456@gmail.com')";
 			stm.executeUpdate(sql);
-			String QUERY = "SELECT * FROM addressbook";
-			ResultSet rs = stm.executeQuery(QUERY);
-
-			// Display values
-			while (rs.next()) {
-				System.out.print("FirstName: " + rs.getString("FirstName"));
-				System.out.print("| LastName: " + rs.getString("LastName"));
-				System.out.print("| Address: " + rs.getString("Address"));
-				System.out.print("| City: " + rs.getString("City"));
-				System.out.print("| State: " + rs.getString("State"));
-				System.out.print("| Zip: " + rs.getInt("Zip"));
-				System.out.print("| PhoneNumber: " + rs.getString("PhoneNumber"));
-				System.out.print("| Email_ID: " + rs.getString("Email_ID"));
-				System.out.println("\n-----------------------------------------------------------");
-				
-			}
+			System.out.println("Contact added successfully...");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
